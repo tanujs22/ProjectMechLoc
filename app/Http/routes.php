@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', array('as'=>'home','uses'=>'PagesController@home'));
+Route::get('users', array('as'=>'users','uses'=>'PagesController@users'));
+Route::get('admin', array('as'=>'admin','uses'=>'PagesController@admin'));
+

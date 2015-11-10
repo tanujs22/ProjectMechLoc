@@ -113,6 +113,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Laravel\Socialite\SocialiteServiceProvider::class,
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -160,9 +161,10 @@ return [
     */
 
     'aliases' => [
-    'Form'      => 'Collective\Html\FormFacade',  
-'HTML'      => 'Collective\Html\HtmlFacade', // Optional 
 
+        'Form'      => 'Collective\Html\FormFacade',  
+        'HTML'      => 'Collective\Html\HtmlFacade', // Optional 
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,

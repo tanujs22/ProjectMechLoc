@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     /*
@@ -20,6 +23,7 @@ class AuthController extends Controller
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
+
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
@@ -61,5 +65,29 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+
+    }
+    
+     public function handleProviderCallback($provider)
+    {
+     //notice we are not doing any validation, you should do it
+
+        $user = Socialite::driver($provider)->user();
+
+         
+        // stroing data to our use table and logging them in
+        $data = [
+            'name' => $user->getName(),
+            'email' => $user->getEmail()
+        ];
+     
+     //   Auth::login(User::firstOrCreate($data));
+
+        //after login redirecting to home page
+        return "<h1>Hello ".$user->getName()."</h1>";
     }
 }

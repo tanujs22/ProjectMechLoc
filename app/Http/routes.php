@@ -11,7 +11,11 @@
 |
 */
 
+
 Route::get('/', array('as'=>'home','uses'=>'PagesController@home'));
 Route::get('users', array('as'=>'users','uses'=>'PagesController@users'));
 Route::get('admin', array('as'=>'admin','uses'=>'PagesController@admin'));
+Route::get('social/login/redirect/{provider}',array('as'=>'social_login', 'uses'=>'Auth\AuthController@redirectToProvider'));
+Route::get('social/login/{provider}','Auth\AuthController@handleProviderCallback');
+
 
